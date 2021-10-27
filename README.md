@@ -32,7 +32,7 @@
 | record             |reference| null: false, foreign_key: true |  
 ### Association
 
-- belongs_to :user
+- belongs_to :record
 
 ## products テーブル
 
@@ -40,7 +40,7 @@ Column               | Type   | Options                        |
 | ------------------ | ------ | -------------------------------|
 | price              | string | null: false,                   |
 | description        | text   | null: false,                   |
-| status             | string | null: false,                   | 
+| status_id          | integer| null: false,                   | 
 | shipping_cost_id   | integer| null: false,                   |
 | shipping_days_id   | integer| null: false,                   |
 | prefecture_id      | integer| null: false,                   |
@@ -56,8 +56,8 @@ Column               | Type   | Options                        |
 ## record テーブル
 Column               | Type   | Options                        |
 | ------------------ | ------ | -------------------------------|
-| name               | string | null: false,                   |
-| ancestry           | string | null: false,                   |
+| user               | reference| null: false, foreign_key: true|
+| product            | reference| null: false, foreign_key: true|
 
 ### Association
 
