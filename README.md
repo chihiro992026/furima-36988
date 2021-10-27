@@ -29,7 +29,7 @@
 | address            | string | null: false                    |
 | building_name      | string |                                |　 
 | phone_number       | string | null: false                    | 
-| record             |reference| null: false, foreign_key: true |  
+| record             |references| null: false, foreign_key: true |  
 ### Association
 
 - belongs_to :record
@@ -38,26 +38,26 @@
 
 Column               | Type   | Options                        |
 | ------------------ | ------ | -------------------------------|
-| price              | string | null: false,                   |
+| price              | integer| null: false,                   |
 | description        | text   | null: false,                   |
 | status_id          | integer| null: false,                   | 
 | shipping_cost_id   | integer| null: false,                   |
 | shipping_days_id   | integer| null: false,                   |
 | prefecture_id      | integer| null: false,                   |
 | category_id        | integer| null: false,  foreign_key: true|　
-| user               |reference| null: false,  foreign_key: true|　
+| user               |references| null: false,  foreign_key: true|　
 
 
 ### Association
 
 - belongs_to :user
-- has_many :records
+- has_one : record
 
-## record テーブル
+## records テーブル
 Column               | Type   | Options                        |
 | ------------------ | ------ | -------------------------------|
-| user               | reference| null: false, foreign_key: true|
-| product            | reference| null: false, foreign_key: true|
+| user               | references| null: false, foreign_key: true|
+| product            | references| null: false, foreign_key: true|
 
 ### Association
 
