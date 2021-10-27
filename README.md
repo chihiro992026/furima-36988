@@ -16,24 +16,23 @@
 | birth_day          | date   | null: false              |　 
 ### Association
 
-- has_many :record
-- has_many :destination
+- has_many :records
 - has_many :products
 
-## destination テーブル
+## destinations テーブル
 
  Column              | Type   | Options                        |
 | ------------------ | ------ | -------------------------------|
 | post_code          | string | null: false                    |
-| prefecture         | string | null: false                    |
+| prefecture_id      | integer| null: false                    |
 | city               | string | null: false                    |
 | address            | string | null: false                    |
 | building_name      | string |                                |　 
 | phone_number       | string | null: false                    | 
-| purchase history   |reference| null: false, foreign_key: true |  
+| record             |reference| null: false, foreign_key: true |  
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 
 ## products テーブル
 
@@ -42,17 +41,17 @@ Column               | Type   | Options                        |
 | price              | string | null: false,                   |
 | description        | text   | null: false,                   |
 | status             | string | null: false,                   | 
-| shipping_cost      | string | null: false,                   |
-| shipping_days      | string | null: false,                   |
-| prefecture_id      | string | null: false,                   |
+| shipping_cost_id   | integer| null: false,                   |
+| shipping_days_id   | integer| null: false,                   |
+| prefecture_id      | integer| null: false,                   |
 | category_id        | integer| null: false,  foreign_key: true|　
-| user_id            |reference| null: false,  foreign_key: true|　
+| user               |reference| null: false,  foreign_key: true|　
 
 
 ### Association
 
-- belongs_to :users 
-- belongs_to :users, record 
+- belongs_to :user
+- has_many :records
 
 ## record テーブル
 Column               | Type   | Options                        |
@@ -63,5 +62,5 @@ Column               | Type   | Options                        |
 ### Association
 
 - has_one : destination
-- belong_to : users
-- belong_to : products
+- belong_to : user
+- belong_to : product
