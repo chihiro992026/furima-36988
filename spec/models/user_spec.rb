@@ -9,9 +9,8 @@ RSpec.describe User, type: :model do
     it 'nicknameとemail、passwordとpassword_confirmation、first_name、family_name、first_name_kana、family_name_kana、birthdayが存在すれば登録できること'do
      expect(@user).to be_valid
     end
-
     end
-   context '新規登録できない場合' do
+  context '新規登録できない場合' do
     it 'nicknameが空では登録できない' do
       @user.nickname = ''  
       @user.valid?
@@ -70,7 +69,26 @@ RSpec.describe User, type: :model do
       another_user.valid?
       expect(another_user.errors.full_messages).to include('Email has already been taken')
     end
-
-  end  
+    it '英字のみのパスワードでは登録できない' do
+      @user.password = 'abcdef'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+    end
+    it 'パスワードが数字のみでは登録できない' do
+      @user.password = '123456'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+    end
+    it '@を含まないemailだと登録できない' do
+      @user.email = 'aaaaaaaaa.com'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Email is invalid')
+    end
+    it '全角文字を含むパスワードでは登録できない' do
+      @user.password ='１２３４５６'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+    end
+  end
   end
 end
