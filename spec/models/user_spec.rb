@@ -90,24 +90,24 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
     end
     it '姓（全角）に半角文字が含まれていると登録できない' do
-      @user.family_name_kana ='12345'
+      @user.family_name ='12345'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Family name is invalid')
+    end
+    it '名（全角）に半角文字が含まれていると登録できない' do
+      @user.first_name ='12345'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('First name is invalid')
+    end
+    it '姓（カナ）にカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない' do
+      @user.family_name_kana ='ひらがな漢字abc123@'
       @user.valid?
       expect(@user.errors.full_messages).to include('Family name kana is invalid')
     end
-    it '名（全角）に半角文字が含まれていると登録できない' do
-      @user.first_name_kana ='12345'
+    it '名（カナ）にカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない' do
+      @user.first_name_kana ='ひらがな漢字abc123@'
       @user.valid?
       expect(@user.errors.full_messages).to include('First name kana is invalid')
-    end
-    it '姓（カナ）にカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない' do
-      @user.password ='ひらがな漢字abc123@'
-      @user.valid?
-      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
-    end
-    it '名（カナ）にカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない' do
-      @user.password ='ひらがな漢字abc123@'
-      @user.valid?
-      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
   end
   end
   end
