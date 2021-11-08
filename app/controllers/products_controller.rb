@@ -1,8 +1,8 @@
-class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :create]
-  def index
-    @products = Product.all
-  end
+# class ProductsController < ApplicationController
+#   before_action :authenticate_user!, except: [:index, :create]
+#   def index
+#     @products = Product.all
+#   end
 
   def create
     @product = Product.new(products_params)

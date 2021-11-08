@@ -36,20 +36,25 @@ RSpec.describe Product, type: :model do
       @product.valid?
       expect(@product.errors.full_messages).to include("Status must be other than 1")
     end
-    it 'prefectureが--では場合は登録できない' do
+    it 'prefectureが--では登録できない' do
       @product.prefecture_id = 0
       @product.valid?
       expect(@product.errors.full_messages).to include("Prefecture must be other than 0")
     end
-    it 'shipping_days_id場合は登録できない' do
+    it 'shipping_days_idが--では登録できない' do
       @product.shipping_days_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Shipping days must be other than 1")
     end
-    it 'priceが9,999,999円以上の場合は登録できない' do
-      @product.price = 10,000,000
+    it 'shipping_cost_idが--では登録できない' do
+      @product.shipping_cost_id = 1
       @product.valid?
-      expect(@product.errors.full_messages).to include("Price can't be blank")
+      expect(@product.errors.full_messages).to include("Shipping cost must be other than 1")
+    end
+    it 'priceが9,999,999円以上の場合は登録できない' do
+      @product.price = 10000000
+      @product.valid?
+      expect(@product.errors.full_messages).to include("Price must be less than or equal to 9999999")
     end
     it 'priceが300円以下の場合は登録できない' do
       @product.price = 299
