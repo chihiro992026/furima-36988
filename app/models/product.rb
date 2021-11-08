@@ -5,8 +5,7 @@ class Product < ApplicationRecord
   belongs_to :prefecture 
   belongs_to :shipping_cost 
   belongs_to :shipping_days 
-  belongs_to :status
-  # has_one : record  
+  belongs_to :status 
   has_one_attached :image 
   
   validates :price, presence: true, numericality:{ only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to:9_999_999 }

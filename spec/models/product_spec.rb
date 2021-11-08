@@ -13,7 +13,6 @@ RSpec.describe Product, type: :model do
   context '商品情報を入力できない場合' do
     it 'imageが空では登録できない' do
       @product.image = nil 
-      # binding.pry 
       @product.valid?
       expect(@product.errors.full_messages).to include("Image can't be blank")
     end
