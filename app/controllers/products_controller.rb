@@ -1,5 +1,5 @@
-# class ProductsController < ApplicationController
-#   before_action :authenticate_user!, except: [:index, :create]
+class ProductsController < ApplicationController
+   before_action :authenticate_user!, except: [:index, :create]
 #   def index
 #     @products = Product.all
 #   end
