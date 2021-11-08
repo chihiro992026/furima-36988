@@ -14,16 +14,16 @@ class ApplicationController < ActionController::Base
 before_action :configure_permitted_parameters, if: :devise_controller?
 
 
-  private
+
 
   private
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :family_name, :family_name_kana, :first_name, :first_name_kana, :birthday])
   end
 
-  def products_params
-    params.require(:product).permit(:content, :image).merge(user_id: current_user.id)
-  end
+  # def products_params
+    # params.require(:product).permit(:content, :image).merge(user_id: current_user.id)
+  # end
 
 
   # def basic_auth
