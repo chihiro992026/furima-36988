@@ -41,27 +41,27 @@ RSpec.describe Product, type: :model do
       @product.valid?
       expect(@product.errors.full_messages).to include("Prefecture must be other than 0")
     end
-    it 'shipping_days_id場合は登録できない'do
+    it 'shipping_days_id場合は登録できない' do
       @product.shipping_days_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Shipping days must be other than 1")
     end
-    it 'priceが9,999,999円以上の場合は登録できない'do
+    it 'priceが9,999,999円以上の場合は登録できない' do
       @product.price = 10,000,000
       @product.valid?
       expect(@product.errors.full_messages).to include("Price can't be blank")
     end
-    it 'priceが300円以下の場合は登録できない'do
+    it 'priceが300円以下の場合は登録できない' do
       @product.price = 299
       @product.valid?
       expect(@product.errors.full_messages).to include("Price must be greater than or equal to 300")
     end 
-    it 'priceが空の場合では登録できない'do
+    it 'priceが空の場合では登録できない' do
        @product.price =''
        @product.valid?
        expect(@product.errors.full_messages).to include("Price can't be blank")
       end 
-    it 'Priceに半角数値以外の文字（平仮名・漢字・英字・記号）が含まれていると保存できない'do
+    it 'Priceに半角数値以外の文字（平仮名・漢字・英字・記号）が含まれていると保存できない' do
        @product.price = 'ひらがな漢字abc@'
        @product.valid?
        expect(@product.errors.full_messages).to include('Price is not a number')
