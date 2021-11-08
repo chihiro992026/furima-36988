@@ -37,9 +37,9 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to include("Status must be other than 1")
     end
     it 'prefectureが--では場合は登録できない' do
-      @product.prefecture_id = 1
+      @product.prefecture_id = 0
       @product.valid?
-      expect(@product.errors.full_messages).to include("Prefecture must be other than 1")
+      expect(@product.errors.full_messages).to include("Prefecture must be other than 0")
     end
     it 'shipping_days_id場合は登録できない'do
       @product.shipping_days_id = 1
