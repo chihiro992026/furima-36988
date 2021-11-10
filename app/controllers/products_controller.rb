@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
    before_action :authenticate_user!, except: [:index, :create]
   def index
-    @procudts = Product.includes(:user).order("created_at DESC")
+    @products = Product.includes(:user).order("created_at DESC")
 
    end
 
@@ -16,6 +16,10 @@ class ProductsController < ApplicationController
     
   def new
     @product = Product.new
+  end
+
+  def show
+    @product = Product.find(params[:id])
   end
 
   private
