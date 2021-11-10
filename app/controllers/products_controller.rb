@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
    before_action :set_product, only: [:show, :edit, :update]
    before_action :contributor_confirmation, only: [:edit]
-   before_action :authenticate_user!, except: [:index, :create]
+   before_action :authenticate_user!, except: [:index, :create, :show]
   def index
     @products = Product.includes(:user).order("created_at DESC")
 
